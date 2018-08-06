@@ -1,0 +1,59 @@
+.leo-pagination{
+	margin: 0;
+    white-space: nowrap;
+    text-align: center;
+	
+}
+
+.leo-pagination ul{
+	display: inline-block;
+}
+
+.leo-pagination ul li{
+	display: inline;
+	
+}
+
+.leo-pagination ul li a{
+	width:28px;
+	height:28px;
+	line-height:28px;
+	font-size:14px;
+	margin:0px 10px;
+	display:block;
+	float:left;
+    text-decoration: none;
+	cursor: pointer;
+}
+
+.leo-pagination ul li.number.active a{
+	border-radius:50%;
+    color: #3254ef;
+    background-color: #fff;
+    box-shadow: 0px 2px 16px 0px rgba(07, 20, 41, 0.1);
+}
+
+.leo-pagination ul li a:hover{
+	border-radius:50%;
+    color: #3254ef;
+    background-color: #fff;
+    box-shadow: 0px 2px 16px 0px rgba(07, 20, 41, 0.1);
+}
+
+.leo-pagination ul li.first a{
+	background:url(../../../images/org_sprite.png) -59px -183px no-repeat;
+}
+
+.leo-pagination ul li.last a{
+	background:url(../../../images/org_sprite.png) -9px -183px no-repeat;
+}
+
+.leo-pagination ul li.previous a{
+	background:url(../../../images/org_sprite.png) -158px -183px no-repeat;
+}
+
+.leo-pagination ul li.next a{
+	background:url(../../../images/org_sprite.png) -105px -183px no-repeat;
+}
+
+

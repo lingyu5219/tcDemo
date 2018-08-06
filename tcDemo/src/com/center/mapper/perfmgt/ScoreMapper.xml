@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.center.mapper.perfmgt.ScoreMapper">
+<!-- 查询成绩-->
+	<select id="queryScore" parameterType="ScoreQuery" resultType="ScoreQuery">
+		<!-- time1，time2，年级，专业，班级，姓名，学号，userId（int） -->
+		<bind name="Name" value="stuName" />
+		<bind name="No" value="stuId" />
+		<if test="stuName!=null and stuName!=''">
+			<bind name="Name" value="'%' + stuName + '%'" />
+			<bind name="No" value="'%' + stuId + '%'" />
+		</if>
+		<!-- # userid,学生id，学生名，课程名,班级名，专业名，学期名，学年名 -->
+		call  proc_perfmgt_score(
+		#{userId},
+		#{No},
+		#{Name},
+		#{courseName},
+		#{batchName},
+		#{majorName},
+		#{termName},
+		#{yearName},
+		#{flag},
+		#{start},
+		#{length}
+		);
+	</select>
+	<select id="queryScoreCount" parameterType="ScoreQuery" resultType="long">
+		<!-- time1，time2，年级，专业，班级，姓名，学号，userId（int） -->
+		<bind name="Name" value="stuName" />
+		<bind name="No" value="stuId" />
+		<if test="stuName!=null and stuName!=''">
+			<bind name="Name" value="'%' + stuName + '%'" />
+			<bind name="No" value="'%' + stuId + '%'" />
+		</if>
+		call  proc_perfmgt_score_count(
+		#{userId},
+		#{No},
+		#{Name},
+		#{courseName},
+		#{batchName},
+		#{majorName},
+		#{termName},
+		#{yearName},
+		#{flag}
+		);
+	</select>
+
+  <!-- 查询成绩级联数据-->
+	<select id="queryScoreJsonData" resultType="scoreJsonData">
+		select tb.batchName,tma.majorName,ty.description as yearName,CONCAT( tt.cyaer,tt.csylQuarter) as termName,tc.cName as courseName
+		from 
+		(
+		select tyy.description as cyaer,tes.description as csylQuarter,classId,coursesId from tb_edumgt_syllabus tsbus
+		left join tb_edumgt_sybitem tsitem on tsitem.syllabusId=tsbus.id
+		left join tb_edumgt_year tyy on  tyy.yearId=tsbus.YEAR
+		left join tb_edumgt_semester tes on tes.semesterId=tsbus.sylQuarter
+		where tsitem.isDel=0 and tsbus.isDel=0
+		group by tsbus.id
+		) tt
+		left join tb_edumgt_course tc on tc.cId=tt.coursesId
+		left join tb_stumgt_batch tb on tb.batchId=tt.classId
+		left join tb_edumgt_year ty on ty.yearId=tb.yearId
+		left join tb_edumgt_major tma on tma.majorId=tb.majorId
+		left join tb_perfmgt_score ts on ts.scoreCourseId=tc.cId 
+		order by ty.description,majorName,batchName,CONCAT( tt.cyaer,tt.csylQuarter),termName
+		
+	</select>
+	
+	<!-- 删除成绩 -->
+	<delete id="deleteScore" parameterType="int">
+		delete from tb_perfmgt_score where scoreId=#{value}
+	</delete>
+	<!-- 更新成绩 -->
+	<update id="updateScore" parameterType="Score">
+		update tb_perfmgt_score
+		<trim prefix="set" suffixOverrides=",">
+			<if test="score!=null and score!=''">score=#{score},</if>
+			<if test="remark!=null">remark=#{remark},</if>
+		</trim>
+		where scoreId = #{scoreId}
+	</update>
+	
+	<!-- 插入成绩 -->
+	<insert id="insertScore" parameterType="Score">
+		insert into tb_perfmgt_score(scorestudentId,scorecourseId,score,createBy,remark)
+			value(#{scorestudentId},#{scorecourseId},#{score},#{createBy},#{remark});
+	</insert>
+</mapper>

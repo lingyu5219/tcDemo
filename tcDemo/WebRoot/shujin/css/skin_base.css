@@ -1,0 +1,258 @@
+/*全局字体*/
+body{
+	font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+/*form表单元素字体 不继承body 单独设置*/
+input, label, select, option, textarea, button, fieldset, legend {
+	font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.clear{
+	clear:both;
+	height:0;
+}
+.left{
+	float:left;
+}
+
+.hide{
+	display:none;
+}
+
+.show{
+	display:block;
+}
+
+.bold{
+	font-weight:bold;
+}
+
+.no-letter-spacing{
+	letter-spacing:0px !important;	
+}
+
+.split-line-vertical{
+	padding:15px 3px 4px 6px;
+	margin:0px 20px;
+	border-left: 1px solid #ccc;
+	font-size: 0;
+}
+
+.td-hr{
+	width: 480px;
+    height: 2px;
+    border: none;
+    border-bottom: 1px solid #eee;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
+	font-size:14px; 
+	color:#b4c7f2;
+}
+input:-moz-placeholder, textarea:-moz-placeholder { 
+    font-size:14px; 
+	color:#b4c7f2;
+}
+input::-moz-placeholder, textarea::-moz-placeholder { 
+    font-size:14px; 
+	color:#b4c7f2;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
+    font-size:14px; 
+	color:#b4c7f2;
+}
+
+input[type="button" i], 
+input[type="submit" i], 
+input[type="reset" i], 
+input[type="file" i]::-webkit-file-upload-button, 
+button{
+	cursor:pointer !important;
+}
+
+:focus {outline:none;} /*for IE*/
+::-moz-focus-inner {border-color: transparent;} /*for mozilla*/
+
+/*字体*/
+.font-xlg{
+	font-size:18px !important;
+}
+.font-lg{
+	font-size:16px !important;
+}
+.font-nm{
+	font-size:14px !important;
+}
+.font-sm{
+	font-size:12px !important;
+}
+.font-xs{
+	font-size:10px !important;
+}
+.blue-light{
+	color:#4161f7 !important;
+}
+.gray-light{
+	color:#999999 !important;
+}
+.gray{
+	color:#666666 !important;
+}
+.gray-dark{
+	color:#333333 !important;
+}
+.white{
+	color:#ffffff !important;
+}
+/*table*/
+td.left{
+	text-align:left;
+}
+td.right{
+	text-align:right;
+}
+
+td.td-top{
+	vertical-align:top;
+}
+
+td.td-middle{
+	vertical-align:middle;
+}
+
+td.td-bottom{
+	vertical-align:bottom;
+}
+
+/*UI控件*/
+/*1.按钮*/
+.leo-btn-red{
+	cursor:pointer;
+	border:none;
+	background:#eb404c;
+	color:#ffffff;
+	text-align: center;
+	display:inline-block;
+	position:relative;
+	padding:0px 15px;
+}
+
+.leo-btn-gradient{
+	cursor:pointer;
+	border:none;
+	background:#408cf1;
+	color:#ffffff;
+	text-align: center;
+	letter-spacing:10px;
+	display:inline-block;
+	position:relative;
+	padding:0px 20px 0px 30px;
+	box-shadow: 0px 2px 24px 0px rgba(07, 20, 41, 0.15);
+	/* Safari 5.1 - 6.0 */
+	background: -webkit-linear-gradient(left,#40a4f1, #408cf1);
+	/* Opera 11.1 - 12.0 */
+	background: -o-linear-gradient(left,#40a4f1, #408cf1);
+	/* firefox */
+	background: -moz-linear-gradient(left,#40a4f1, #408cf1);
+	/* ie9 标准*/
+	background: linear-gradient(left,#40a4f1, #408cf1);
+	/*IE6,IE 7*/
+	FILTER:progid:DXImageTransform.Microsoft.Gradient(gradientType=1,startColorStr=#40a4f1,endColorStr=#408cf1); /*IE 6 7 8*/
+}
+
+.leo-btn-lg{
+	width:auto;
+	height:45px;
+	line-height:45px;
+	font-size:18px;
+}
+
+.leo-btn-normal{
+	width:auto;
+	height:33px;
+	line-height:33px;
+	font-size:14px;
+}
+
+.leo-btn-small{
+	width:auto;
+	height:33px;
+	line-height:33px;
+	font-size:12px;
+}
+
+.leo-btn-radius-lg{
+	border-radius: 30px;
+}
+
+.leo-btn-radius-small{
+	border-radius: 4px;
+	width:auto;
+	height:37px;
+	line-height:37px;
+	font-size:16px;
+	letter-spacing:0px;
+	padding:0px 4px;
+}
+
+.leo-btn-gradient-light{
+	cursor:pointer;
+	border:none;
+	background:#ffffff;
+	color:#4b73da;
+	text-align: center;
+	letter-spacing:10px;
+	display:inline-block;
+	position:relative;
+	padding:0px 20px 0px 30px;
+	box-shadow: 0px 0px 10px 2px rgba(205,205,205, 0.3);
+	/* Safari 5.1 - 6.0 */
+	background: -webkit-linear-gradient(left,#ffffff 30%, #F4F8FF);
+	/* Opera 11.1 - 12.0 */
+	background: -o-linear-gradient(left,#ffffff 30%, #F4F8FF);
+	/* firefox */
+	background: -moz-linear-gradient(left,#ffffff 30%, #F4F8FF);
+	/* ie9 标准*/
+	background: linear-gradient(left,#ffffff 30%, #F4F8FF);
+	/*IE6,IE 7*/
+	FILTER:progid:DXImageTransform.Microsoft.Gradient(gradientType=1,startColorStr=#ffffff,endColorStr=#F4F8FF); /*IE 6 7 8*/
+}
+
+.icon-plus{
+	cursor:pointer;
+	width:50px;
+	height:48px;
+	border:none;
+	display:block;
+	background:url(../images/org_sprite.png) -12px -321px no-repeat;
+}
+
+.icon-arr-left{
+	width:12px;
+	height:12px;
+	display:inline-block;
+	vertical-align:middle;
+	margin-right:10px;
+	background:url(../images/org_sprite.png) -164px -147px no-repeat;
+}
+
+.icon-arr-right{
+	width:12px;
+	height:12px;
+	display:inline-block;
+	vertical-align:middle;
+	margin-left:10px;
+	background:url(../images/org_sprite.png) -115px -147px no-repeat;
+}
+
+/*box*/
+.leo-box{
+	width:auto;
+	height:auto;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+	border-radius:4px;
+	box-shadow: 0px 2px 8px 2px rgba(205,205,205, 0.4);
+}
+

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.center.mapper.jobmgt.CompanyMapper">
+
+ <!-- 通过id或name查company表中信息 -->
+	<select id="queryCompanyBycoName" parameterType="java.lang.String"
+		resultType="company">
+		select *from tb_jobmgt_company where coId = #{_parameter}
+		or coName = #{_parameter}
+	</select>
+
+	<!-- 查company表中所有信息 -->
+	<select id="queryCompanyList" resultType="company">
+		select * from
+		tb_jobmgt_company
+	</select>
+	
+	<!-- 存储更新信息 -->
+	<update id="updateCompany" parameterType="company">
+		update tb_jobmgt_company
+		set coName = #{coName,jdbcType=VARCHAR}
+		where coId = #{coId,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 添加职位信息 -->
+	<insert id="addCompany" parameterType="company">
+		insert into
+		tb_jobmgt_company(coName,createBy)
+		values(
+		#{coName,jdbcType=VARCHAR},
+		#{createBy,jdbcType=INTEGER})
+	</insert>
+	<!-- 删除教职工信息 -->
+	<delete id="deleteCompany" parameterType="int">
+		delete from tb_jobmgt_company where coId = #{coId,jdbcType=INTEGER}
+	</delete>
+	
+</mapper>

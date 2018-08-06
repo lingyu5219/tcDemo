@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.center.mapper.edumgt.SyllabusMapper">
+	<sql id="syllabus">
+		sb.id,
+		sb.year,
+		sb.sylQuarter,
+		sb.classId,
+		sb.beginTime,
+		sb.endTime,
+		sb.isDel,
+		ba.batchName,
+		se.description,
+		ye.description as yearDescription
+	</sql>
+	<sql id="sybitem">
+		si.id,
+		si.syllabusId,
+		si.coursesId,
+		si.week,
+		si.date,
+		si.section,
+		si.teacherId,
+		si.classroomId,
+		si.isDel,
+		co.cName,
+		ro.roomName,
+		st.staffName
+	</sql>
+	<sql id="syllabusQueryCondition">
+		<if test="year !=null and year!=''">
+			and sb.year = #{year}
+		</if>
+		<if test="sylQuarter !=null and sylQuarter!=''">
+			and sb.sylQuarter = #{sylQuarter}
+		</if>
+		<if test="batchId !=null and batchId!=''">
+			and ba.batchId = #{batchId}
+		</if>				
+	</sql>
+	<sql id="sybitemQueryCondition">
+		<if test="syllabusId != null and syllabusId != ''">
+			and si.syllabusId = #{syllabusId}
+		</if>
+		<if test="sybitemCondition != null and sybitemCondition != ''">
+			and ( co.cName like #{sybitemCondition}
+			or ro.roomName like #{sybitemCondition}
+			or st.staffName like #{sybitemCondition}
+			or si.date like #{sybitemCondition} )
+		</if>
+	</sql>
+	<resultMap type="com.center.po.edumgt.Syllabus" id="syllabusResult">
+		<id property="id" column="id"/>
+		<result property="beginTime" column="beginTime"/>
+		<result property="endTime" column="endTime"/>
+		<association property="batch" javaType="com.center.po.edumgt.Batch">
+			<id property="batchId" column="classId"/>
+			<result property="batchName" column="batchName"/>
+		</association>
+		<association property="semester" javaType="com.center.po.edumgt.Semester">
+			<id property="semesterId" column="sylQuarter"/>
+			<result property="description" column="description"/>
+		</association>
+		<association property="yearObj" javaType="com.center.po.edumgt.Year">
+			<id property="yearId" column="year"/>
+			<result property="description" column="yearDescription"/>
+		</association>
+	</resultMap>
+	<resultMap type="com.center.po.edumgt.Sybitem" id="sybitemResult">
+		<id property="id" column="id"/>
+		<result property="section" column="section"/>
+		<result property="date" column="date"/>
+		<result property="week" column="week"/>
+		<association property="major" javaType="com.center.po.edumgt.Major">
+			<id property="majorId" column="coursesId"/>
+			<result property="majorName" column="cName"/>
+		</association>
+		<association property="room" javaType="com.center.po.assetsmgt.Room">
+			<id property="roomId" column="classroomId"/>
+			<result property="roomName" column="roomName"/>
+		</association>
+		<association property="staff" javaType="com.center.po.hrmgt.Staff">
+			<id property="staffId" column="teacherId"/>
+			<result property="staffName" column="staffName"/>
+		</association>
+	</resultMap>
+	<select id="checkSyllabus" parameterType="syllabus" resultType="syllabus">
+		select <include refid="syllabus"/> from tb_edumgt_syllabus sb
+			left join tb_stumgt_batch ba
+				on sb.classId=ba.batchId
+			left join tb_edumgt_semester se
+				on sb.sylQuarter=se.semesterId
+			left join tb_edumgt_year ye
+				on sb.year=ye.yearId		
+		<where>
+			sb.year=#{yearObj.yearId}
+				and sb.sylQuarter= #{semester.semesterId}
+			and sb.classId= #{batch.batchId}
+			and sb.isDel = 0						
+		</where>
+	</select>
+	<insert id="addSyllabus" parameterType="syllabus">
+		insert into tb_edumgt_syllabus(id,year,sylQuarter,classId,beginTime,endTime,isDel) values(null,#{yearObj.yearId},#{semester.semesterId},#{batch.batchId},#{beginTime},#{endTime},0)
+	</insert>
+	<select id="loadSyllabus" parameterType="syllabusQuery" resultMap="syllabusResult">
+		select <include refid="syllabus"/> from tb_edumgt_syllabus sb
+			left join tb_stumgt_batch ba
+				on sb.classId=ba.batchId
+			left join tb_edumgt_semester se
+				on sb.sylQuarter=se.semesterId
+			left join tb_edumgt_year ye
+				on sb.year=ye.yearId
+		<where>
+			 sb.isDel = 0
+			<include refid="syllabusQueryCondition"/>
+		</where>
+		limit ${start},${length}
+	</select>
+	<select id="countSyllabus"  resultType="int">
+		select count(1) from tb_edumgt_syllabus sb
+			left join tb_stumgt_batch ba
+				on sb.classId=ba.batchId
+			left join tb_edumgt_semester se
+				on sb.sylQuarter=se.semesterId
+			left join tb_edumgt_year ye
+				on sb.year=ye.yearId			
+		<where>
+			 sb.isDel = 0
+			<include refid="syllabusQueryCondition"/>
+		</where>
+	</select>
+	<update id="deleteSyllabus" parameterType="int">
+		update tb_edumgt_syllabus set isDel = 1
+		<where>
+			id=#{value}
+		</where>
+	</update>
+	<select id="countSybItem" resultType="int">
+		select count(1) from tb_edumgt_sybitem si
+			left join tb_edumgt_course co
+				on co.cId=si.coursesId
+			left join tb_assetsmgt_room ro
+				on ro.roomId=si.classroomId
+			left join tb_hrmgt_staff st
+				on st.staffId=si.teacherId		
+		<where>
+			si.isDel = 0
+			<include refid="sybitemQueryCondition"/>
+		</where>
+	</select>
+	<select id="loadSybitem" resultMap="sybitemResult">
+		select <include refid="sybitem"/> from tb_edumgt_sybitem si
+		left join tb_edumgt_course co
+			on co.cId=si.coursesId
+		left join tb_assetsmgt_room ro
+			on ro.roomId=si.classroomId
+		left join tb_hrmgt_staff st
+			on st.staffId=si.teacherId
+		<where>
+			si.isDel=0
+			<include refid="sybitemQueryCondition"/>
+		</where>
+		<if test="start != null and start !=''">
+			limit ${start},${length}
+		</if>
+		<if test="sort !=null and sort !=''">
+			order by section ASC,date ASC
+		</if>
+	</select>
+	<insert id="addSybitem" parameterType="sybitem">
+		insert into tb_edumgt_sybitem(id,syllabusId,coursesId,week,date,section,teacherId,classroomId,isDel) values(null,#{syllabusId},#{major.majorId},#{week},#{date},#{section},#{staff.staffId},#{room.roomId},0)
+	</insert>
+	<select id="checkSybitem" parameterType="sybitem" resultMap="sybitemResult">
+		select <include refid="sybitem"/> from tb_edumgt_sybitem si
+		left join tb_edumgt_course co
+			on co.cId=si.coursesId
+		left join tb_assetsmgt_room ro
+			on ro.roomId=si.classroomId
+		left join tb_hrmgt_staff st
+			on st.staffId=si.teacherId	
+		<where>
+			<if test="syllabusId!=null and syllabusId!=''">
+				si.syllabusId = #{syllabusId}
+			</if>
+			<if test="section!=null and section!=''">
+				and si.section = #{section}
+			</if>
+			<if test="date !=null and date!=''">
+				and si.date = #{date}
+			</if>			
+		</where>
+	</select>
+	<update id="deleteSybitem" parameterType="int">
+		update tb_edumgt_sybitem set isDel = 1
+			where id=#{value} and isDel=0
+	</update>
+	<select id="getThisWeekSyllabus" resultMap="syllabusResult">
+		select <include refid="syllabus"/> from tb_edumgt_syllabus sb
+					left join tb_stumgt_batch ba
+			on sb.classId=ba.batchId
+			left join tb_edumgt_semester se
+				on sb.sylQuarter=se.semesterId
+			left join tb_edumgt_year ye
+				on sb.year=ye.yearId			
+		<where>
+			sb.isDel=0 
+				<include refid="syllabusQueryCondition"/>
+		</where>
+	</select>
+	<update id="updateSyllabus" parameterType="syllabus">
+		update tb_edumgt_syllabus set year=#{yearObj.yearId},sylQuarter=#{semester.semesterId},classId=#{batch.batchId},beginTime=#{beginTime},endTime=#{endTime}
+			 where id=#{id} and isDel=0
+	</update>
+	<update id="updateSybitem" parameterType="sybitem">
+		update tb_edumgt_sybitem set coursesId=#{major.majorId},week=#{week},date=#{date},section=#{section},teacherId=#{staff.staffId},classroomId=#{room.roomId}
+			where id=#{id} and isDel = 0
+	</update>
+</mapper>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/Binding.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/Binding.js"></script>
+</head>
+
+<body>
+    <div class="title">
+        <div class="company">
+            <img class="logo" src="images/logo.png" />
+
+            <p class="name">上海数进信息科技有限公司-企业管理</p>
+
+            <p class="phone">4007-167-956</p>
+            <span class="icon phone_icon"></span>
+        </div>
+
+
+        <div class="help">
+            <span class="icon help_icon"></span>
+            <p class="help_text">帮助</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sub_title">
+            <h1>注册绑定</h1>
+        </div>
+        <div class="content">
+            <form id="register" name="register">
+                <table>
+                    <tr>
+                        <td class="label">姓名：</td>
+                        <td><input type="text" class="long_text" info="输入姓名" id="name" /></td>
+                        <td><div id="name_info"></div></td>
+                    </tr>
+                    <tr>
+                        <td class="label">邮箱：</td>
+                        <td><input type="text" class="long_text" info="输入邮箱" id="email"/></td>
+                        <td><div id="email_info"></div></td>
+                    </tr>
+                    <tr>
+                        <td class="label">登录密码：</td>
+                        <td><input type="text" class="long_text" info="6-20位字母、数字和符号" id="pwd"/></td>
+                        <td><div id="pwd_info"></div></td>
+                    </tr>
+                    <tr>
+                        <td class="label">确认密码：</td>
+                        <td><input type="text" class="long_text" info="再次输入密码" id="confirm_pwd"/></td>
+                        <td><div id="con_pwd_info"></div></td>
+                    </tr>
+                    <tr>
+                        <td class="label">手机号码：</td>
+                        <td><input type="text" class="long_text" info="手机号可直接作为登录名使用" id="phone"/></td>
+                        <td><div id="phone_info"></div></td>
+                    </tr>
+                    <tr>
+                        <td class="label">验证码：</td>
+                        <td><input type="text" class="short_text" info="输入图形验证码" /></td>
+                    </tr>
+                    <tr>
+                        <td class="label">短信验证：<br/><br/><br/></td>
+                        <td>
+                            <input type="text" class="short_text" info="输入短信验证码" />
+                            <button class="sms_button">发送短信验证码</button>
+                            <div class="confirm">
+                                <input id="confirm" type="checkbox" />
+                                <label for="confirm"><span class="text1">您确认阅读并接受</span>《<span class="text2">数进服务协议</span>》</label>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <div>
+                    <button class="button">注册绑定</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</body>
+
+</html>

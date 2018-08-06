@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.center.mapper.org.DeptMapper">
+<!-- 不需要添加部门 不能删除部门 -->
+	<sql id="queryDeptWhere">
+		<if test="deptName !=null and deptName !=''">
+			and deptName like CONCAT(CONCAT('%', #{deptName}),'%')
+		</if>
+		<if test="createTimeBegin!=null and createTimeBegin!=''">
+			<![CDATA[
+			and STR_TO_DATE(createTime,'%Y-%m-%d') >= STR_TO_DATE(#{createTimeBegin},'%Y-%m-%d')
+			]]>
+		</if>
+		<if test="createTimeEnd!=null and createTimeEnd!=''">
+			<![CDATA[
+			and STR_TO_DATE(createTime,'%Y-%m-%d') <= STR_TO_DATE(#{createTimeEnd},'%Y-%m-%d')
+			]]>
+		</if>
+	</sql>
+
+	<select id="queryDeptById" parameterType="int" resultType="department">
+		select * from tb_orgmgt_dept where deptId=#{value}
+	</select>
+	
+	<select id="queryDeptList" parameterType="deptQuery" resultType="department">
+		select * from tb_orgmgt_dept
+		<where>
+			<include refid="queryDeptWhere"></include>
+		</where>
+		order by centerId desc
+		limit #{start},#{length}
+	</select>
+	
+	<select id="queryDeptCount" parameterType="deptQuery" resultType="long">
+		select count(1) from tb_orgmgt_dept
+		<where>
+			<include refid="queryDeptWhere"></include>
+		</where>
+		order by deptId desc
+	</select>
+	
+	<delete id="deleteDeptById" parameterType="int">
+		delete from tb_orgmgt_dept where deptId=#{value}
+	</delete>
+	
+	<insert id="addDept" parameterType="Department" useGeneratedKeys="true" keyProperty="deptId">
+		insert into tb_orgmgt_dept
+		(deptName, deptAddress,centerId, createBy, remark) 
+		values (#{deptName}, #{deptAddress}, #{centerId}, #{createBy}, #{remark});
+	</insert>
+	
+	<update id="modifyDeptById" parameterType="center">
+ 		update tb_orgmgt_dept
+ 		set deptName = #{deptName},
+ 		    deptAddress=#{deptAddress},
+ 		    centerId=#{centerId},
+ 		    remark=#{remark}
+ 		where deptId = #{deptId}
+ 	</update>
+
+	<!-- 查询 resultType写的是po的名
+	<select id="queryDeptById" parameterType="int" resultType="department">
+		SELECT * FROM db_trainingcenter.tb_orgmgt_dept where deptId = #{deptId}
+	</select>
+	
+	<select id="queryDeptByName" parameterType="String" resultType="department">
+		SELECT * FROM db_trainingcenter.tb_orgmgt_dept where deptName like '%' #{deptName} '%'
+	</select>
+	
+	<select id="queryDeptAll"  resultType="department">
+		SELECT * FROM db_trainingcenter.tb_orgmgt_dept 
+	</select>
+	 增加部门 对应DepartmentMapper中的addDept方法 其中 parentId可以为空 
+	<insert id="addDept" parameterType="com.center.po.org.Department">
+	    insert into db_trainingcenter.tb_orgmgt_dept(deptName,
+	    deptAddress,
+	    remark,
+	    centerId,
+	    parentId,
+	    createBy)
+	    values(#{deptName},
+	    #{deptAddress},
+	    #{remark},
+	    #{centerId},
+	    #{parentId},
+	    #{createBy})
+	</insert>
+	 删 
+	<delete id="deleteDeptById" parameterType="int">
+	    delete from db_trainingcenter.tb_orgmgt_dept where deptId = #{deptId}
+	</delete>
+	
+	 改  根据deptId
+	<update id="updateDeptById" parameterType="com.center.po.org.Department">
+	    update db_trainingcenter.tb_orgmgt_dept
+	    set 
+	    deptName=#{deptName},
+	    deptAddress=#{deptAddress},
+	    remark=#{remark},
+	    parentId=#{parentId}
+	    where deptId=#{deptId}
+	</update> -->
+	
+	
+</mapper>

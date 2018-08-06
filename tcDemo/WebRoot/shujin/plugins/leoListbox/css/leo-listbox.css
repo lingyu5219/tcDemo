@@ -1,0 +1,50 @@
+.leo-listbox{
+	width:auto;
+	height:auto;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+	border-radius:4px;
+	box-shadow: 0px 2px 8px 2px rgba(205,205,205, 0.4);
+}
+
+.leo-listbox ul{
+	list-style-type: none;
+	padding:0;
+	margin:0;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+}
+
+.leo-listbox ul li{
+	height: 43px;
+	line-height: 43px;
+	text-indent: 15px
+	
+}
+
+.leo-listbox ul li a {
+	cursor: pointer;
+	display: block;
+	height: 43px;
+	color: #666666;
+	font-size:16px;
+	text-decoration: none;
+}
+
+.leo-listbox ul li a.focus,
+.leo-listbox ul li a:hover {
+	color: #4161f7;
+	/* Safari 5.1 - 6.0 */
+	background: -webkit-linear-gradient(left,#E0E8FD, #f5f9ff);
+	/* Opera 11.1 - 12.0 */
+	background: -o-linear-gradient(left,#E0E8FD, #f5f9ff) 1 2;
+	/* firefox */
+	background: -moz-linear-gradient(left,#E0E8FD, #f5f9ff) 1 2;
+	/* ie9 标准*/
+	background: linear-gradient(left,#E0E8FD, #f5f9ff) 1 2;
+	/*IE6,IE 7*/
+	FILTER:progid:DXImageTransform.Microsoft.Gradient(gradientType=1,startColorStr=#E0E8FD,endColorStr=#f5f9ff); /*IE 6 7 8*/
+	
+}

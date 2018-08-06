@@ -1,0 +1,180 @@
+/*树形菜单*/
+.leo-tree-menu{
+	width:100%; 
+	height:100%; 
+	position:relative;
+	text-align:left;
+	cursor: pointer;
+}
+
+.leo-absolute-panel{
+	width:100%; 
+	height:100%;
+	position:absolute; 
+	left:-19px;
+	z-index:9990;
+}
+
+.leo-tree-menu ul{
+	width:100%;
+	padding:0;
+	list-style-type: none;
+	overflow:hidden;
+}
+
+.leo-tree-menu ul li{
+	padding:0px;
+}
+
+.leo-tree-menu ul.leo-tree-menu-ul1{
+	/*
+	padding-bottom: 18px;
+	*/
+}
+
+.leo-tree-menu ul li a{
+	width:98%;
+	height:43px;
+	line-height:43px;
+	display:block;
+	font-size:16px;
+	text-decoration: none;
+	border:1px solid transparent;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+	border-radius: 4px;
+	position:relative;
+	overflow:hidden;
+	left:4px;
+	z-index:10001;
+	margin-bottom:6px;
+}
+
+.leo-tree-menu ul li a.active,
+.leo-tree-menu ul li a:hover{
+	/*
+	border:1px solid transparent;
+    */
+	
+	border-radius: 5px 0px 0px 5px;
+    background-clip:padding-box,border-box;
+    background-origin:padding-box,border-box;
+    background-image:linear-gradient(90deg,#fff,#fff),linear-gradient(90deg,#4463f6,#97b3ff);
+	box-shadow: 0px 0px 10px 0px rgba(42,65,164, 0.34);
+	z-index:10002;
+	text-align:center;
+	padding:0 8px !important;
+}
+
+.leo-tree-menu > .leo-absolute-panel > ul > li > a > i,
+.leo-tree-menu > .leo-absolute-panel > .leoJScroll > .jscroll-c > ul > li > a > i{
+	/*width:10px;
+	height:10px;
+	display:block;
+	margin-top:18px;
+	margin-right:10px;
+	float:left;
+	background:url(../../../images/org_sprite.png) -18px -148px no-repeat;
+	*/
+	width: 11px;
+    height: 10px;
+    display: inline-block;
+    margin-top: 13px;
+	margin-right:5px;
+    background: url(../../../images/org_sprite.png) -18px -148px no-repeat;
+}
+.leo-tree-menu > .leo-absolute-panel > ul > li > a > i.hide,
+.leo-tree-menu > .leo-absolute-panel > .leoJScroll > .jscroll-c > ul > li > a > i.hide{
+	transform-origin:center;
+	transform:rotate(180deg);
+	-ms-transform:rotate(180deg); /* Internet Explorer */
+	-moz-transform:rotate(180deg); /* Firefox */
+	-webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+}
+.leo-tree-menu > .leo-absolute-panel > ul > li > ul > li a > i,
+.leo-tree-menu > .leo-absolute-panel > .leoJScroll > .jscroll-c > ul > li > ul > li a > i{
+	/*
+	width:8px;
+	height:6px;
+	display:block;
+	margin-top:18px;
+	margin-right:9px;
+	float:left;
+	background:url(../../../images/org_sprite.png) -18px -104px no-repeat;
+	*/
+	    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-top: 13px;
+    margin-right: 5px;
+    background: url(../../../images/org_sprite.png) -17px -102px no-repeat;
+}
+.leo-tree-menu > .leo-absolute-panel > ul > li > ul > li a > i.hide,
+.leo-tree-menu > .leo-absolute-panel > .leoJScroll > .jscroll-c > ul > li > ul > li a > i.hide{
+	transform-origin:center;
+	transform:rotate(180deg);
+	-ms-transform:rotate(180deg); /* Internet Explorer */
+	-moz-transform:rotate(180deg); /* Firefox */
+	-webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+}
+.leo-tree-menu > .leo-absolute-panel > ul > li > a,
+.leo-tree-menu > .leo-absolute-panel > .leoJScroll > .jscroll-c > ul > li > a{
+	color:#4161f7;
+	padding:0px 0px 0px 24px;
+}
+.leo-tree-menu > .leo-absolute-panel > ul > li > ul > li > a,
+.leo-tree-menu > .leo-absolute-panel > .leoJScroll > .jscroll-c > ul > li > ul > li > a{
+	font-size:16px;
+	color:#333333;
+	padding:0px 0px 0px 48px;
+}
+.leo-tree-menu > .leo-absolute-panel >	 ul > li > ul > li > ul > li > a,
+.leo-tree-menu > .leo-absolute-panel > .leoJScroll > .jscroll-c > ul > li > ul > li > ul > li > a{
+	font-size:16px;
+	color:#333333;
+	opacity:0.7;
+	filter:Alpha(opacity=70);
+	padding:0px 0px 0px 78px;
+}
+
+.leo-tree-menu > .leo-absolute-panel >	 ul > li > ul > li > ul > li > ul > li > a,
+.leo-tree-menu > .leo-absolute-panel > .leoJScroll > .jscroll-c > ul > li > ul > li > ul > li > ul > li > a{
+	font-size:16px;
+	color:#333333;
+	opacity:0.7;
+	filter:Alpha(opacity=70);
+	padding:0px 0px 0px 90px;
+}
+
+.leo-tree-menu > .leo-absolute-panel >	 ul > li > ul > li > ul > li > ul > li > ul > li > a,
+.leo-tree-menu > .leo-absolute-panel > .leoJScroll > .jscroll-c > ul > li > ul > li > ul > li > ul > li > ul > li > a{
+	font-size:16px;
+	color:#333333;
+	opacity:0.7;
+	filter:Alpha(opacity=70);
+	padding:0px 0px 0px 110px;
+}
+/*6级*/
+.leo-tree-menu > .leo-absolute-panel >	 ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > a,
+.leo-tree-menu > .leo-absolute-panel > .leoJScroll > .jscroll-c > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > a{
+	font-size:16px;
+	color:#333333;
+	opacity:0.7;
+	filter:Alpha(opacity=70);
+	padding:0px 0px 0px 130px;
+}
+
+/*7级*/
+.leo-tree-menu > .leo-absolute-panel >	 ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > a,
+.leo-tree-menu > .leo-absolute-panel > .leoJScroll > .jscroll-c > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > a{
+	font-size:16px;
+	color:#333333;
+	opacity:0.7;
+	filter:Alpha(opacity=70);
+	padding:0px 0px 0px 150px;
+}
+
+.leo-tree-menu ul li a > span{
+	font-size:14px;
+}

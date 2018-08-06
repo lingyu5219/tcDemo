@@ -1,0 +1,22 @@
+--roleTest
+查询 增加 删除 修改 Demo
+http://localhost:8080/trainingCenter/system/queryAllRole?start=0&length=5&draw=2
+http://localhost:8080/trainingCenter/system/addRole?roleName=name1&createBy=name1
+http://localhost:8080/trainingCenter/system/deleteRole?roleId=1
+http://localhost:8080/trainingCenter/system/changeRoleName?roleId=3&roleName=names
+
+--menuTest
+http://localhost:8080/trainingCenter/system/addMenu?menuName=name1&moduleId=1&isPublic=yes&location=www.baidu.com&createBy=1
+http://localhost:8080/trainingCenter/system/updateMenu?menuId=1&menuName=name2
+http://localhost:8080/trainingCenter/system/queryAllMenu?start=0&length=2
+http://localhost:8080/trainingCenter/system/deleteMenu?menuId=1
+
+--jtest
+http://localhost:8080/trainingCenter/system/addJurisdiction?jId=1&menuId=1&createBy=1
+http://localhost:8080/trainingCenter/system/selectAllJurisdiction?start=0&length=2
+http://localhost:8080/trainingCenter/system/deleteJurisdiction?jId=1
+--userTest
+http://localhost:8080/trainingCenter/system/queryAllUser?start=0&length=5
+http://localhost:8080/trainingCenter/system/addUser?userId=1&roleId=2&userPassword=3&picPath=4&createBy=5&userName=t
+http://localhost:8080/trainingCenter/system/deleteUser?userId=6
+http://localhost:8080/trainingCenter/system/updateUser?userId=5&roleId=2
