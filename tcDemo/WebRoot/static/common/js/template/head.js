@@ -102,7 +102,7 @@ function initNoticeWs(){
 
 $(function () {
 	//初始 获取已发布的系统公告
-	initNoticeList();
+	//initNoticeList();
 	//初始化websocket
-	initNoticeWs();
+	//initNoticeWs();
 });

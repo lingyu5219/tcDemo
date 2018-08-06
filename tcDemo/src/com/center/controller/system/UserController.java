@@ -97,7 +97,7 @@ public class UserController {
 		}
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("redirect:/index");
+		modelAndView.setViewName("redirect:/system/login");
 
 		return modelAndView;
 	}

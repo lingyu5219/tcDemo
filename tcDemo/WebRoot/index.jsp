@@ -9,7 +9,7 @@ request.setAttribute("basePath", basePath);
 	<head>
 		<meta charset="utf-8"/>
 		<script type="text/javascript">
-			window.location.href="${basePath}index";
+			window.location.href="${basePath}system/login";
 		</script>
 	</head>
 	<body>

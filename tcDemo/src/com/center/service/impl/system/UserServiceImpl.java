@@ -6,12 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.center.mapper.hrmgt.StaffMapper;
-import com.center.mapper.stumgt.StudentMapper;
 import com.center.mapper.system.UserMapper;
-import com.center.po.hrmgt.Staff;
 import com.center.po.query.DatatablesView;
-import com.center.po.stumgt.Student;
 import com.center.po.system.User;
 import com.center.po.system.UserQuery;
 import com.center.service.system.UserService;
@@ -20,17 +16,17 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserMapper userMapper;
 	 
-	@Autowired
+	/*@Autowired
 	private StudentMapper studentMapper;
 	
 	@Autowired
 	private StaffMapper staffMapper;
-	
+	*/
 	@Override
 	public HashMap<String, Object> getPersonalInfo(int userId) throws Exception {
 		HashMap<String, Object> rsMap = new HashMap<String,Object>();
 		
-		Student student = studentMapper.queryStu(userId);
+		/*Student student = studentMapper.queryStu(userId);
 		Staff staff = staffMapper.queryStaff(userId);
 		if(null != student){
 			//flag 1 表示学生
@@ -41,7 +37,7 @@ public class UserServiceImpl implements UserService{
 			//flag 1 表示教职工
 			rsMap.put("flag", "2");
 			rsMap.put("personal", staff);
-		}
+		}*/
 		return rsMap;
 	} 
 	
