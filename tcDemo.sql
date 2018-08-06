@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `db_edumgt` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `db_edumgt`;
+CREATE DATABASE  IF NOT EXISTS `db_tc_demo` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `db_tc_demo`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
--- Host: localhost    Database: db_edumgt
+-- Host: localhost    Database: db_tc_demo
 -- ------------------------------------------------------
 -- Server version	5.6.33-log
 
@@ -166,11 +166,11 @@ INSERT INTO `tb_system_user` VALUES (1,1,'admin','123456','static/upload/pic/use
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'db_edumgt'
+-- Dumping events for database 'db_tc_demo'
 --
 
 --
--- Dumping routines for database 'db_edumgt'
+-- Dumping routines for database 'db_tc_demo'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `proc_perfmgt_attend` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
